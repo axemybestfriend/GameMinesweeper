@@ -43,3 +43,23 @@ TEST(MinesweeperTest, MinesArePlacedCorrectly) {
     }
     EXPECT_EQ(mineCount, 3);
 }
+
+TEST(MinesweeperTest, MinesArePlacedRandomly) {
+    Minesweeper game1(5, 5, 5);
+    Minesweeper game2(5, 5, 5);
+
+    game1.placeMines();
+    game2.placeMines();
+
+    bool allSame = true;
+    for (int y = 0; y < 5; ++y) {
+        for (int x = 0; x < 5; ++x) {
+            if (game1.isMine(x, y) != game2.isMine(x, y)) {
+                allSame = false;
+                break;
+            }
+        }
+    }
+
+    EXPECT_FALSE(allSame);
+}
