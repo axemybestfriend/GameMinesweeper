@@ -28,3 +28,18 @@ TEST(MinesweeperTest, FieldCellsExist) {
     EXPECT_FALSE(game.isMine(1, 1));
     EXPECT_FALSE(game.isMine(2, 2));
 }
+
+TEST(MinesweeperTest, MinesArePlacedCorrectly) {
+    Minesweeper game(3, 3, 3);
+    game.placeMines();
+
+    int mineCount = 0;
+    for (int y = 0; y < 3; ++y) {
+        for (int x = 0; x < 3; ++x) {
+            if (game.isMine(x, y)) {
+                mineCount++;
+            }
+        }
+    }
+    EXPECT_EQ(mineCount, 3);
+}
