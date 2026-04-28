@@ -19,5 +19,12 @@ TEST(MinesweeperTest, MinesCountTest) {
 
 TEST(MinesweeperTest, MinesNotExceedTotalCells) {
     Minesweeper game(5, 5, 30);
-    EXPECT_LE(game.getMinesCount(), 5 * 5 - 1);
+    EXPECT_LE(game.getMinesCount(), 24);
+}
+
+TEST(MinesweeperTest, FieldCellsExist) {
+    Minesweeper game(3, 3, 0);
+    EXPECT_FALSE(game.isMine(0, 0));
+    EXPECT_FALSE(game.isMine(1, 1));
+    EXPECT_FALSE(game.isMine(2, 2));
 }
