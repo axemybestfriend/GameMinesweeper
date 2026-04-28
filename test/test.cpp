@@ -16,3 +16,8 @@ TEST(MinesweeperTest, MinesCountTest) {
     Minesweeper game(10, 10, 15);
     EXPECT_EQ(game.getMinesCount(), 15);
 }
+
+TEST(MinesweeperTest, MinesNotExceedTotalCells) {
+    Minesweeper game(5, 5, 30);
+    EXPECT_LE(game.getMinesCount(), 5 * 5 - 1);
+}
