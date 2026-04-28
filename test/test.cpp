@@ -11,3 +11,8 @@ TEST(MinesweeperTest, FieldHasSize) {
     EXPECT_EQ(game.getWidth(), 10);
     EXPECT_EQ(game.getHeight(), 20);
 }
+
+TEST(MinesweeperTest, MinesCountTest) {
+    Minesweeper game(10, 10, 15);
+    EXPECT_EQ(game.getMinesCount(), 15);
+}
