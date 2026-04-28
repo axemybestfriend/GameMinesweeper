@@ -63,3 +63,18 @@ TEST(MinesweeperTest, MinesArePlacedRandomly) {
 
     EXPECT_FALSE(allSame);
 }
+
+TEST(MinesweeperTest, CountNeighbourMinesTest) {
+    Minesweeper game(3, 3, 1);
+    game.setMineForTest(1, 1);
+
+    EXPECT_EQ(game.countNeighbourMines(0, 0), 1);
+    EXPECT_EQ(game.countNeighbourMines(1, 0), 1);
+    EXPECT_EQ(game.countNeighbourMines(2, 0), 1);
+    EXPECT_EQ(game.countNeighbourMines(0, 1), 1);
+    EXPECT_EQ(game.countNeighbourMines(1, 1), -1);
+    EXPECT_EQ(game.countNeighbourMines(2, 1), 1);
+    EXPECT_EQ(game.countNeighbourMines(0, 2), 1);
+    EXPECT_EQ(game.countNeighbourMines(1, 2), 1);
+    EXPECT_EQ(game.countNeighbourMines(2, 2), 1);
+}
