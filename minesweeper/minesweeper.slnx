@@ -3,6 +3,6 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="../test/test.vcxproj" />
-  <Project Path="minesweeper.vcxproj" />
+  <Project Path="../test/test.vcxproj" Id="a771b304-b86e-450a-9b4e-72f712eb0bf6" />
+  <Project Path="minesweeper.vcxproj" Id="acaa238e-0178-4acc-910b-58cc6b083276" />
 </Solution>
