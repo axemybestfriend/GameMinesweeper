@@ -140,3 +140,16 @@ TEST(MinesweeperTest, WinWhenAllSafeCellsRevealed) {
     
     EXPECT_TRUE(game.isWin());
 }
+
+TEST(MinesweeperTest, CannotRevealAfterGameOver) {
+    Minesweeper game(3, 3, 1);
+    game.setMineForTest(1, 1);
+
+    bool result = game.reveal(1, 1);
+    EXPECT_FALSE(result);  // проигрыш
+
+    result = game.reveal(0, 0);
+    EXPECT_FALSE(result);
+
+    EXPECT_FALSE(game.isRevealed(0, 0));
+}
