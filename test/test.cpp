@@ -78,3 +78,9 @@ TEST(MinesweeperTest, CountNeighbourMinesTest) {
     EXPECT_EQ(game.countNeighbourMines(1, 2), 1);
     EXPECT_EQ(game.countNeighbourMines(2, 2), 1);
 }
+
+TEST(MinesweeperTest, CellIsRevealedAfterCall) {
+    Minesweeper game(3, 3, 0);
+    game.reveal(1, 1);
+    EXPECT_TRUE(game.isRevealed(1, 1));
+}
