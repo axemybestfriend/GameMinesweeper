@@ -16,6 +16,8 @@ public:
         : width(w), height(h), minesCount(std::min(mines, w* h - 1)) {
         field.assign(height, std::vector<bool>(width, false));
         revealed.assign(height, std::vector<bool>(width, false));
+        totalSafeCells = width * height - minesCount;
+        safeRevealedCount = 0;
     }
 
     int getWidth() const { return width; }
@@ -113,10 +115,16 @@ public:
         return revealed[y][x];
     }
 
+    bool isWin() const {
+        return false;   // заглушка, пока просто возвращаем false
+    }
+
 private:
     int width = 0;
     int height = 0;
     int minesCount = 0;
+    int safeRevealedCount = 0;
+    int totalSafeCells = 0;
     std::vector<std::vector<bool>> field;
     std::vector<std::vector<bool>> revealed;
 };
