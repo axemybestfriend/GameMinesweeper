@@ -13,7 +13,7 @@ public:
     }
 
     Minesweeper(int w, int h, int mines)
-        : width(w), height(h), minesCount(std::min(mines, w* h - 1)), gameOver(false) {
+        : width(w), height(h), minesCount(std::min(mines, w* h - 1)), gameOver(false), won(false) {
         field.assign(height, std::vector<bool>(width, false));
         revealed.assign(height, std::vector<bool>(width, false));
         totalSafeCells = width * height - minesCount;
@@ -81,7 +81,7 @@ public:
     }
 
     bool reveal(int x, int y) {
-        if (gameOver) {
+        if (gameOver || won) {
             return false;
         }
 
@@ -90,16 +90,21 @@ public:
         }
 
         if (revealed[y][x]) {
-            return true; 
+            return true;
         }
 
         if (field[y][x]) {
             gameOver = true;
-            return false; 
+            return false;
         }
 
         revealed[y][x] = true;
         safeRevealedCount++;
+
+        if (safeRevealedCount == totalSafeCells) {
+            won = true;
+            return true;
+        }
 
         if (countNeighbourMines(x, y) == 0) {
             for (int dy = -1; dy <= 1; ++dy) {
@@ -121,10 +126,7 @@ public:
         return revealed[y][x];
     }
 
-    bool isWin() const {
-        return safeRevealedCount == totalSafeCells;
-    }
-
+    bool isWin() const { return won; }
     bool isGameOver() const { return gameOver; }
 
 private:
@@ -134,6 +136,7 @@ private:
     int safeRevealedCount = 0;
     int totalSafeCells = 0;
     bool gameOver = false;
+    bool won = false;
     std::vector<std::vector<bool>> field;
     std::vector<std::vector<bool>> revealed;
 };
