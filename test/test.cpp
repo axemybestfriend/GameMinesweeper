@@ -153,3 +153,18 @@ TEST(MinesweeperTest, CannotRevealAfterGameOver) {
 
     EXPECT_FALSE(game.isRevealed(0, 0));
 }
+
+TEST(MinesweeperTest, CannotRevealAfterWin) {
+    Minesweeper game(2, 2, 1);
+    game.setMineForTest(0, 0);
+
+    game.reveal(1, 0);
+    game.reveal(0, 1);
+    game.reveal(1, 1);
+
+    EXPECT_TRUE(game.isWin());
+
+    bool result = game.reveal(1, 1);
+    EXPECT_FALSE(result);
+    EXPECT_TRUE(game.isWin());
+}
