@@ -82,9 +82,15 @@ public:
         if (x < 0 || x >= width || y < 0 || y >= height) {
             return true;
         }
-        if (field[y][x]) {
-            return false;
+
+        if (revealed[y][x]) {
+            return true; 
         }
+
+        if (field[y][x]) {
+            return false; 
+        }
+
         revealed[y][x] = true;
         return true;
     }
