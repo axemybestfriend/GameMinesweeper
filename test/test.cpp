@@ -91,3 +91,15 @@ TEST(MinesweeperTest, RevealMine) {
     bool result = game.reveal(1, 1);
     EXPECT_FALSE(result);
 }
+
+TEST(MinesweeperTest, AlreadyRevealedCell) {
+    Minesweeper game(3, 3, 0);
+
+    bool firstResult = game.reveal(1, 1);
+    EXPECT_TRUE(firstResult);
+    EXPECT_TRUE(game.isRevealed(1, 1));
+
+    bool secondResult = game.reveal(1, 1);
+    EXPECT_TRUE(secondResult); 
+    EXPECT_TRUE(game.isRevealed(1, 1));  
+}
