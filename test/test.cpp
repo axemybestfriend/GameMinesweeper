@@ -103,3 +103,15 @@ TEST(MinesweeperTest, AlreadyRevealedCell) {
     EXPECT_TRUE(secondResult); 
     EXPECT_TRUE(game.isRevealed(1, 1));  
 }
+
+TEST(MinesweeperTest, RevealEmptyCell) {
+    Minesweeper game(3, 3, 0);
+
+    game.reveal(0, 0);
+
+    for (int y = 0; y < 3; ++y) {
+        for (int x = 0; x < 3; ++x) {
+            EXPECT_TRUE(game.isRevealed(x, y));
+        }
+    }
+}
