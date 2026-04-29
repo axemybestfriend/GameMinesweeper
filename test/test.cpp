@@ -84,3 +84,10 @@ TEST(MinesweeperTest, CellIsRevealedAfterCall) {
     game.reveal(1, 1);
     EXPECT_TRUE(game.isRevealed(1, 1));
 }
+
+TEST(MinesweeperTest, RevealMine) {
+    Minesweeper game(3, 3, 1);
+    game.setMineForTest(1, 1);
+    bool result = game.reveal(1, 1);
+    EXPECT_FALSE(result);
+}
