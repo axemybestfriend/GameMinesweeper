@@ -49,6 +49,33 @@ public:
         }
     }
 
+    void setMineForTest(int x, int y) {
+        field[y][x] = true;
+    }
+
+    int countNeighbourMines(int x, int y) const {
+        if (isMine(x, y)) {
+            return -1;  
+        }
+
+        int count = 0;
+        for (int dy = -1; dy <= 1; ++dy) {
+            for (int dx = -1; dx <= 1; ++dx) {
+                if (dx == 0 && dy == 0) continue;
+
+                int nx = x + dx;
+                int ny = y + dy;
+
+                if (nx >= 0 && nx < width && ny >= 0 && ny < height) {
+                    if (field[ny][nx]) {
+                        count++;
+                    }
+                }
+            }
+        }
+        return count;
+    }
+
 private:
     int width = 0;
     int height = 0;
