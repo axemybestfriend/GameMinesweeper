@@ -79,11 +79,14 @@ public:
     }
 
     bool reveal(int x, int y) {
+        if (x >= 0 && x < width && y >= 0 && y < height) {
+            revealed[y][x] = true;
+        }
         return true;
     }
 
     bool isRevealed(int x, int y) const {
-        return true;
+        return revealed[y][x];
     }
 
 private:
