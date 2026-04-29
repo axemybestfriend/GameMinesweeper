@@ -9,11 +9,13 @@ public:
 
     Minesweeper(int w, int h) : width(w), height(h) {
         field.assign(height, std::vector<bool>(width, false));
+        revealed.assign(height, std::vector<bool>(width, false));
     }
 
     Minesweeper(int w, int h, int mines)
         : width(w), height(h), minesCount(std::min(mines, w* h - 1)) {
         field.assign(height, std::vector<bool>(width, false));
+        revealed.assign(height, std::vector<bool>(width, false));
     }
 
     int getWidth() const { return width; }
@@ -76,9 +78,18 @@ public:
         return count;
     }
 
+    bool reveal(int x, int y) {
+        return true;
+    }
+
+    bool isRevealed(int x, int y) const {
+        return true;
+    }
+
 private:
     int width = 0;
     int height = 0;
     int minesCount = 0;
     std::vector<std::vector<bool>> field;
+    std::vector<std::vector<bool>> revealed;
 };
