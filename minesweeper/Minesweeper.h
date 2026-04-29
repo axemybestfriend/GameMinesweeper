@@ -94,6 +94,7 @@ public:
         }
 
         revealed[y][x] = true;
+        safeRevealedCount++;
 
         if (countNeighbourMines(x, y) == 0) {
             for (int dy = -1; dy <= 1; ++dy) {
@@ -116,7 +117,7 @@ public:
     }
 
     bool isWin() const {
-        return false;   // заглушка, пока просто возвращаем false
+        return safeRevealedCount == totalSafeCells;
     }
 
 private:
