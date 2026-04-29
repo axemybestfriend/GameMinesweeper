@@ -115,3 +115,28 @@ TEST(MinesweeperTest, RevealEmptyCell) {
         }
     }
 }
+
+TEST(MinesweeperTest, CellWithNumberDoesNotOpeny) {
+    Minesweeper game(3, 3, 1);
+    game.setMineForTest(0, 1);
+
+
+    game.reveal(0, 0);
+
+    EXPECT_TRUE(game.isRevealed(0, 0));
+
+    EXPECT_FALSE(game.isRevealed(0, 1));
+    EXPECT_FALSE(game.isRevealed(1, 0));
+    EXPECT_FALSE(game.isRevealed(1, 1));
+}
+
+TEST(MinesweeperTest, WinWhenAllSafeCellsRevealed) {
+    Minesweeper game(2, 2, 1);
+    game.setMineForTest(0, 0);
+
+    game.reveal(1, 0);
+    game.reveal(0, 1);
+    game.reveal(1, 1);
+    
+    EXPECT_TRUE(game.isWin());
+}
